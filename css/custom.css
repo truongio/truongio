@@ -84,8 +84,16 @@ body {
 
 @media (max-width: 767px) {
   .menu-container {
-    margin-top: 8em;
+    margin-top: 50vh;
   }
+}
+
+.eyebrow {
+  font-size: 0.55em;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 0.5em;
 }
 
 .by {
