@@ -96,6 +96,23 @@ body {
   margin-bottom: 0.5em;
 }
 
+.menu-link {
+  text-decoration: none;
+  color: #454545;
+  transition: color 0.5s ease;
+}
+
+.menu-link:hover,
+.menu-link:focus-visible {
+  color: #888;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-link {
+    transition: none;
+  }
+}
+
 .by {
   color: #999;
 }
