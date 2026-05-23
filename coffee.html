@@ -19,102 +19,168 @@
       @font-face{font-family:'EB Garamond';font-style:italic;font-weight:400 600;font-display:swap;src:url(fonts/eb-garamond-vietnamese-italic.woff2) format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB}
       *,*::before,*::after{box-sizing:border-box}
       html{font-size:62.5%}
-      body{margin:0;color:#454545;background:#fafafa;font-family:"EB Garamond",Georgia,serif;font-size:1.8em;line-height:1.6}
+      body{margin:0;color:#454545;background:#fafafa;font-family:"EB Garamond",Georgia,serif;font-size:1.8em;line-height:1.65;font-feature-settings:"onum","liga","kern"}
       @media(min-width:768px){body{font-size:2em}}
-      h1,h2,h3,h4,h5,h6{margin:0 0 1rem;font-weight:500}
-      p{margin:0 0 2.5rem}
+      h1,h2,h3{margin:0;font-weight:500}
+      p{margin:0}
       a{color:#454545}
-      hr{margin:3rem 0 3.5rem;border:0;border-top:1px solid #e1e1e1}
-      .container{position:relative;width:85%;max-width:800px;margin:0 auto;padding:0 20px}
-      @media(min-width:600px){.container{top:10%;padding-bottom:5%}}
-      @media(max-width:599px){.container{top:3rem}}
-      .story-container{max-width:30em}
-      .page-title{font-size:1.2em;line-height:1.2em;font-weight:500;margin-bottom:4px}
-      @media(min-width:768px){.page-title{font-size:1.5em;line-height:1.5em}}
-      .menu-container{max-width:30em;margin-top:25em}
-      @media(max-width:767px){.menu-container{margin-top:50vh}}
-      .eyebrow{font-size:.55em;letter-spacing:.15em;text-transform:uppercase;color:#5d5d5d;margin-bottom:.5em}
-      .menu-link{text-decoration:none;color:#454545;transition:color .5s ease}
-      .menu-link:hover,.menu-link:focus-visible{color:#5d5d5d}
-      @media(prefers-reduced-motion:reduce){.menu-link{transition:none}}
-      .subtitle{font-size:.8em}
-      .by{color:#5d5d5d}
-      .recipe{margin-top:2.5em;padding-top:2em;border-top:1px solid #e5e5e5}
-      .recipe-title{font-size:1em;line-height:1.2em;font-weight:600;margin:0 0 .25em}
-      .recipe .subtitle{margin:0 0 1em;color:#5d5d5d}
-      .recipe .timeline{line-height:1.6em;margin-bottom:1.25em}
-      .recipe .notes{line-height:1.6em;color:#555}
+
+      .container{width:88%;max-width:680px;margin:0 auto;padding:7vh 20px 14vh}
+      @media(max-width:599px){.container{padding:3.5rem 20px 5rem}}
+
+      .masthead{margin-bottom:4.5em}
+      .eyebrow{font-size:.5em;letter-spacing:.22em;text-transform:uppercase;color:#7a7a7a;margin:0 0 .9em}
+      .page-title{font-size:1.7em;line-height:1;font-style:italic;font-weight:400;letter-spacing:-.005em}
+
+      .recipe{margin:0}
+
+      .recipe-header{
+        display:flex;
+        align-items:baseline;
+        justify-content:space-between;
+        gap:1.5em;
+        margin-bottom:1.8em;
+        padding-bottom:1em;
+        border-bottom:1px solid #e6e6e6;
+      }
+      @media(max-width:480px){
+        .recipe-header{flex-direction:column;align-items:flex-start;gap:.15em}
+      }
+
+      .recipe-title{font-size:1em;font-weight:500;line-height:1.25;margin:0}
+      .recipe-num{font-style:italic;color:#a8a8a8;margin-right:.55em;font-weight:400}
+      .recipe-ratio{font-style:italic;color:#888;font-size:.85em;letter-spacing:.02em;white-space:nowrap;margin:0}
+
+      .timeline{
+        display:grid;
+        grid-template-columns:5.4em 1fr;
+        column-gap:1.6em;
+        row-gap:.32em;
+        margin:0 0 2.2em;
+        font-size:.9em;
+      }
+      .timeline dt{
+        color:#9a9a9a;
+        font-style:italic;
+        text-align:right;
+        font-feature-settings:"lnum","tnum";
+        white-space:nowrap;
+      }
+      .timeline dd{margin:0;color:#454545}
+      .timeline dd.pause{color:#a8a8a8;font-style:italic}
+      .timeline .pct{color:#a8a8a8;font-style:italic;font-size:.94em;margin-left:.15em}
+
+      .notes{list-style:none;margin:0;padding:0;font-size:.9em;color:#5a5a5a}
+      .notes li{padding-left:1.2em;text-indent:-1.2em;margin-bottom:.12em}
+      .notes li::before{content:"\2014\2009";color:#c0c0c0}
+
+      .divider{
+        text-align:center;
+        color:#c8c8c8;
+        letter-spacing:1.2em;
+        margin:4em 0 4em 1.2em;
+        font-size:.85em;
+      }
+
+      .page-footer{margin-top:5em;padding-top:2em;border-top:1px solid #ebebeb}
+      .back-link{
+        color:#8a8a8a;
+        text-decoration:none;
+        font-size:.5em;
+        letter-spacing:.22em;
+        text-transform:uppercase;
+        transition:color .5s ease;
+      }
+      .back-link:hover,.back-link:focus-visible{color:#454545}
+      @media(prefers-reduced-motion:reduce){.back-link{transition:none}}
     </style>
   </head>
 
   <body>
     <main class="container">
-      <div class="story-container">
-        <h1 class="page-title">v60 recipes</h1>
+      <article>
+        <header class="masthead">
+          <p class="eyebrow">brew log</p>
+          <h1 class="page-title">v60 recipes</h1>
+        </header>
 
-        <section class="recipe">
-          <h2 class="recipe-title">hoffmann 1 cup v60</h2>
-          <p class="subtitle"><i>15g : 250g</i></p>
+        <section class="recipe" aria-labelledby="recipe-1">
+          <header class="recipe-header">
+            <h2 class="recipe-title" id="recipe-1"><span class="recipe-num">i.</span>hoffmann, one cup</h2>
+            <p class="recipe-ratio">15g &nbsp;:&nbsp; 250g</p>
+          </header>
 
-          <div class="timeline">
-            <strong>0:00</strong> – pour 50g to bloom<br>
-            <strong>0:10–0:15</strong> – gently swirl<br>
-            <strong>0:45</strong> – pour up to 100g (40%)<br>
-            <strong>1:00</strong> – pause<br>
-            <strong>1:10</strong> – pour up to 150g (60%)<br>
-            <strong>1:20</strong> – pause<br>
-            <strong>1:30</strong> – pour up to 200g (80%)<br>
-            <strong>1:40</strong> – pause<br>
-            <strong>1:50</strong> – pour up to 250g (100%)<br>
-            <strong>2:00</strong> – gently swirl, let drain (~3:00 total)
-          </div>
+          <dl class="timeline">
+            <dt>0:00</dt><dd>pour 50g to bloom</dd>
+            <dt>0:10–0:15</dt><dd>gently swirl</dd>
+            <dt>0:45</dt><dd>pour up to 100g <span class="pct">(40%)</span></dd>
+            <dt>1:00</dt><dd class="pause">pause</dd>
+            <dt>1:10</dt><dd>pour up to 150g <span class="pct">(60%)</span></dd>
+            <dt>1:20</dt><dd class="pause">pause</dd>
+            <dt>1:30</dt><dd>pour up to 200g <span class="pct">(80%)</span></dd>
+            <dt>1:40</dt><dd class="pause">pause</dd>
+            <dt>1:50</dt><dd>pour up to 250g <span class="pct">(100%)</span></dd>
+            <dt>2:00</dt><dd>gently swirl, let drain <span class="pct">(~3:00 total)</span></dd>
+          </dl>
 
-          <div class="notes">
-            • medium-fine grind<br>
-            • soft, filtered water, freshly boiled (for lighter roasts)<br>
-            • four pulse pours of 50g each after the bloom<br>
-            • drawdown around 3:00 — taste is the most important thing
-          </div>
+          <ul class="notes">
+            <li>medium-fine grind</li>
+            <li>soft, filtered water, freshly boiled (for lighter roasts)</li>
+            <li>four pulse pours of 50g each after the bloom</li>
+            <li>drawdown around 3:00 — taste is the most important thing</li>
+          </ul>
         </section>
 
-        <section class="recipe">
-          <h2 class="recipe-title">lance hedrick ultimate</h2>
-          <p class="subtitle"><i>15g : 250g</i></p>
+        <p class="divider" aria-hidden="true">···</p>
 
-          <div class="timeline">
-            <strong>0:00</strong> – pour 60g, swirl hard<br>
-            <strong>0:45</strong> – pour to 150g, center then spiral<br>
-            <strong>1:20</strong> – pour to 250g<br>
-            <strong>1:45</strong> – swirl, let drain (~3:15 total)
-          </div>
+        <section class="recipe" aria-labelledby="recipe-2">
+          <header class="recipe-header">
+            <h2 class="recipe-title" id="recipe-2"><span class="recipe-num">ii.</span>lance hedrick, ultimate</h2>
+            <p class="recipe-ratio">15g &nbsp;:&nbsp; 250g</p>
+          </header>
 
-          <div class="notes">
-            • fine grind, finer than most recipes<br>
-            • boiling water even for light roasts<br>
-            • hard swirl on bloom — think milkshake<br>
-            • paper-thin bed at the end is the target
-          </div>
+          <dl class="timeline">
+            <dt>0:00</dt><dd>pour 60g, swirl hard</dd>
+            <dt>0:45</dt><dd>pour to 150g, center then spiral</dd>
+            <dt>1:20</dt><dd>pour to 250g</dd>
+            <dt>1:45</dt><dd>swirl, let drain <span class="pct">(~3:15 total)</span></dd>
+          </dl>
+
+          <ul class="notes">
+            <li>fine grind, finer than most recipes</li>
+            <li>boiling water even for light roasts</li>
+            <li>hard swirl on bloom — think milkshake</li>
+            <li>paper-thin bed at the end is the target</li>
+          </ul>
         </section>
 
-        <section class="recipe">
-          <h2 class="recipe-title">patrik rolf / april</h2>
-          <p class="subtitle"><i>15g : 250g</i></p>
+        <p class="divider" aria-hidden="true">···</p>
 
-          <div class="timeline">
-            <strong>0:00</strong> – pour 50g, swirl<br>
-            <strong>0:40</strong> – pour to 150g, center-out spiral<br>
-            <strong>1:10</strong> – pour to 250g<br>
-            <strong>1:30</strong> – swirl, drain (~2:30 total)
-          </div>
+        <section class="recipe" aria-labelledby="recipe-3">
+          <header class="recipe-header">
+            <h2 class="recipe-title" id="recipe-3"><span class="recipe-num">iii.</span>patrik rolf / april</h2>
+            <p class="recipe-ratio">15g &nbsp;:&nbsp; 250g</p>
+          </header>
 
-          <div class="notes">
-            • medium-fine grind<br>
-            • 96°c water for light nordic roasts<br>
-            • fast total brew time, clean cup<br>
-            • works with april brewer or v60
-          </div>
+          <dl class="timeline">
+            <dt>0:00</dt><dd>pour 50g, swirl</dd>
+            <dt>0:40</dt><dd>pour to 150g, center-out spiral</dd>
+            <dt>1:10</dt><dd>pour to 250g</dd>
+            <dt>1:30</dt><dd>swirl, drain <span class="pct">(~2:30 total)</span></dd>
+          </dl>
+
+          <ul class="notes">
+            <li>medium-fine grind</li>
+            <li>93°c water for light nordic roasts</li>
+            <li>fast total brew time, clean cup</li>
+            <li>works with april brewer or v60</li>
+          </ul>
         </section>
-      </div>
+
+        <footer class="page-footer">
+          <a class="back-link" href="index.html">index</a>
+        </footer>
+      </article>
     </main>
   </body>
 </html>
