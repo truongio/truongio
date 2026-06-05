@@ -1,6 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/tracker", "destination": "https://tracker.truongio.dev" }
+  ],
   "headers": [
     {
       "source": "/fonts/:file.woff2",
