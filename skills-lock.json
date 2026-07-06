@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "design-with-taste": {
+      "source": "cristicretu/family-taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/design-with-taste/SKILL.md",
+      "computedHash": "37f095341c330bb3446ae0200dfbbdc1994f338d3184e759f8f69ff02d124ebd"
+    }
+  }
+}
