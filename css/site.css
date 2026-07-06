@@ -140,10 +140,49 @@ hr{margin:2.6em 0;border:0;border-top:1px solid var(--rule)}
 .menu-container{max-width:30em}
 .menu-container{font-size:1.55rem}
 .menu-link{
-  display:inline-block;color:var(--ink);text-decoration:none;
-  line-height:1.45;transition:color .5s ease,letter-spacing .5s ease;
+  position:relative;display:inline-block;color:var(--ink);text-decoration:none;
+  line-height:1.45;
+  transition:transform .16s cubic-bezier(.2,0,0,1),color .16s cubic-bezier(.2,0,0,1);
 }
-.menu-link:hover,.menu-link:focus-visible{color:#000;letter-spacing:.004em}
+/* hairline underline that draws in from the left */
+.menu-link::before{
+  content:"";position:absolute;left:0;right:0;bottom:-.06em;height:1px;
+  background:currentColor;opacity:.4;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .32s cubic-bezier(.16,1,.3,1);
+}
+.menu-link:hover,.menu-link:focus-visible{color:#000;transform:translateX(.3em)}
+.menu-link:hover::before,.menu-link:focus-visible::before{transform:scaleX(1)}
+.menu-link:active{transform:translateX(.3em) translateY(1px)}
+
+/* external links leave the site — a slim arrow glides out on hover */
+.menu-link[href^="http"]::after{
+  content:"\2192";display:inline-block;margin-left:.4em;
+  font-size:.82em;color:var(--ink-faint);
+  opacity:0;transform:translateX(-.35em);
+  transition:opacity .22s ease,transform .28s cubic-bezier(.16,1,.3,1);
+}
+.menu-link[href^="http"]:hover::after,
+.menu-link[href^="http"]:focus-visible::after{opacity:1;transform:translateX(0)}
+
+/* navigating: dim the other links, keep the chosen one deepened + pulsing */
+body.is-navigating .menu-link:not(.is-loading){opacity:.3;transition:opacity .45s ease}
+.menu-link.is-loading{color:#000;transform:translateX(.3em)}
+.menu-link.is-loading::before{transform:scaleX(1);animation:link-pulse 1.1s ease-in-out infinite}
+.menu-link.is-loading[href^="http"]::after{opacity:1;transform:translate(0,0);animation:arrow-go 1.1s ease-in-out infinite}
+@keyframes link-pulse{0%,100%{opacity:.25}50%{opacity:.65}}
+@keyframes arrow-go{0%,100%{transform:translateX(0)}50%{transform:translateX(.28em)}}
+
+/* top progress bar shown while an external page loads */
+.page-progress{
+  position:fixed;top:0;left:0;height:2px;width:100%;
+  background:var(--ink);transform:scaleX(0);transform-origin:left;
+  opacity:0;z-index:100;pointer-events:none;
+}
+.page-progress.is-active{
+  opacity:1;transform:scaleX(.92);
+  transition:transform 5.5s cubic-bezier(.16,1,.3,1),opacity .2s ease;
+}
 
 .site-footer{
   position:fixed;bottom:2.4rem;left:50%;transform:translateX(-50%);
@@ -179,14 +218,29 @@ hr{margin:2.6em 0;border:0;border-top:1px solid var(--rule)}
 /* --- footer / back link --- */
 .page-footer{margin-top:4.5em;padding-top:1.8em;border-top:1px solid var(--rule)}
 .back-link{
+  position:relative;display:inline-block;
   font-family:var(--mono);color:var(--ink-faint);text-decoration:none;
   font-size:1.15rem;letter-spacing:.22em;text-transform:uppercase;
-  transition:color .5s ease;
+  transition:color .3s ease,transform .2s cubic-bezier(.2,0,0,1);
 }
-.back-link:hover,.back-link:focus-visible{color:var(--ink)}
+.back-link::before{
+  content:"\2190";position:absolute;right:100%;margin-right:.5em;
+  opacity:0;transform:translateX(.3em);
+  transition:opacity .2s ease,transform .2s cubic-bezier(.16,1,.3,1);
+}
+.back-link:hover,.back-link:focus-visible{color:var(--ink);transform:translateX(.4em)}
+.back-link:hover::before,.back-link:focus-visible::before{opacity:1;transform:translateX(0)}
+.back-link:active{transform:translateX(.4em) translateY(1px)}
 
 /* --- motion off --- */
 @media(prefers-reduced-motion:reduce){
   body::after{animation:none}
-  .menu-link,.back-link{transition:none}
+  .menu-link,.back-link{transition:color .2s ease}
+  .menu-link:hover,.menu-link:focus-visible,
+  .back-link:hover,.back-link:focus-visible,
+  .menu-link:active,.back-link:active,
+  .menu-link.is-loading{transform:none}
+  .menu-link::before,.back-link::before,.menu-link[href^="http"]::after{transition:opacity .2s ease}
+  .menu-link.is-loading::before,.menu-link.is-loading[href^="http"]::after{animation:none}
+  .page-progress.is-active{transition:opacity .2s ease}
 }
