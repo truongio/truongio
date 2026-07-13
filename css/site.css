@@ -138,7 +138,7 @@ hr{margin:2.6em 0;border:0;border-top:1px solid var(--rule)}
 
 /* --- index menu --- */
 .menu-container{max-width:30em}
-.menu-container{font-size:1.55rem}
+.menu-container{font-size:1.6rem}
 .menu-link{
   position:relative;display:inline-block;color:var(--ink);text-decoration:none;
   line-height:1.45;
