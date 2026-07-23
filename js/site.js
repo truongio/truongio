@@ -36,18 +36,17 @@
 
     a.classList.add('is-loading');
     document.body.classList.add('is-navigating');
+    document.body.classList.add('is-leaving');
     if (bar) requestAnimationFrame(function () { bar.classList.add('is-active'); });
 
-    var reduce = window.matchMedia &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // a beat so the departure animation registers before we leave
-    window.setTimeout(function () { window.location.href = href; }, reduce ? 0 : 150);
+    // start the departure transition and navigate immediately
+    window.setTimeout(function () { window.location.href = href; }, 0);
   }, false);
 
   // returning via back/forward (incl. bfcache) should land on a clean page
   window.addEventListener('pageshow', function () {
     document.body.classList.remove('is-navigating');
+    document.body.classList.remove('is-leaving');
     var loading = document.querySelector('.menu-link.is-loading, .is-loading');
     if (loading) loading.classList.remove('is-loading');
     if (bar) bar.classList.remove('is-active');

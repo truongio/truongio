@@ -175,18 +175,13 @@ hr{margin:2.6em 0;border:0;border-top:1px solid var(--rule)}
   .menu-link[href^="http"]:hover::after{opacity:1;transform:translateX(0)}
 }
 
-/* first paint: links arrive softly, one after another */
-.index-main .menu-link{animation:menu-enter .22s cubic-bezier(.16,1,.3,1) backwards}
-.index-main .menu-link:nth-of-type(1){animation-delay:.03s}
-.index-main .menu-link:nth-of-type(2){animation-delay:.06s}
-.index-main .menu-link:nth-of-type(3){animation-delay:.09s}
-.index-main .menu-link:nth-of-type(4){animation-delay:.12s}
-.index-main .menu-link:nth-of-type(5){animation-delay:.15s}
-.index-main .menu-link:nth-of-type(6){animation-delay:.18s}
-.index-main .menu-link:nth-of-type(7){animation-delay:.21s}
-.index-main .menu-link:nth-of-type(8){animation-delay:.24s}
-.index-main .menu-link:nth-of-type(9){animation-delay:.27s}
-@keyframes menu-enter{from{opacity:0;transform:translateY(.22em)}}
+/* first paint: everything fades in softly together */
+.index-main *{animation:fade-in 1.4s cubic-bezier(.2,.6,.2,1) backwards}
+@keyframes fade-in{from{opacity:0;filter:blur(4px);transform:translateY(6px)}}
+
+/* departure: the page dissolves — blur, fade, gentle upward drift */
+.index-main,.site-footer{transition:opacity 8s cubic-bezier(.23,1,.32,1),filter 8s cubic-bezier(.23,1,.32,1),transform 8s cubic-bezier(.23,1,.32,1)}
+body.is-leaving .index-main,body.is-leaving .site-footer{opacity:0;filter:blur(4px);transform:translateY(-4px)}
 
 /* navigating: dim siblings quickly; chosen link holds static deepened state */
 body.is-navigating .menu-link:not(.is-loading){opacity:.3;transition:opacity .15s cubic-bezier(.23,1,.32,1)}
@@ -261,7 +256,7 @@ body.is-navigating .menu-link:not(.is-loading){opacity:.3;transition:opacity .15
 /* --- reduced motion: keep opacity/color, drop movement --- */
 @media(prefers-reduced-motion:reduce){
   body::after{animation:none}
-  .index-main .menu-link{animation:none}
+  .index-main *{animation:none}
   .menu-link,.back-link{transition:color .16s ease}
   .menu-link:hover,.menu-link:focus-visible,
   .back-link:hover,.back-link:focus-visible,
@@ -279,6 +274,9 @@ body.is-navigating .menu-link:not(.is-loading){opacity:.3;transition:opacity .15
   .menu-link.is-loading[href^="http"]::after,
   .back-link:hover::before,.back-link:focus-visible::before{transform:none}
   body.is-navigating .menu-link:not(.is-loading){transition:opacity .15s ease}
+  /* departure: opacity only — no blur, no drift */
+  .index-main,.site-footer{transition:opacity .2s ease;filter:none}
+  body.is-leaving .index-main,body.is-leaving .site-footer{filter:none;transform:none}
   /* progress: opacity only — bar appears fully, no sweep */
   .page-progress.is-active{transition:opacity .2s ease;transform:scaleX(.92)}
 }
