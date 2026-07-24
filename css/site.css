@@ -113,8 +113,15 @@ hr{margin:2.6em 0;border:0;border-top:1px solid var(--rule)}
    middle) inside an 800px column, left-aligned — exactly as before */
 .index-page{display:flex;flex-direction:column;align-items:center;justify-content:center}
 .index-main{width:85%;max-width:800px;padding:0 20px}
-.index-main .menu-container{padding-top:20vh}
+.index-main .menu-container{padding-top:20vh;font-size:1.6rem;line-height:1.28}
+@media(min-width:768px){.index-main .menu-container{font-size:1.7rem}}
 @media(max-height:700px){.index-main .menu-container{padding-top:0}}
+/* mobile: keep the block centred, then nudge it a little below centre —
+   a transform can't jam it to the top or overflow the way vh padding did */
+@media(max-width:599px){
+  .index-main .menu-container{padding-top:0}
+  .index-main{transform:translateY(9vh)}
+}
 
 .story-container{max-width:31em;margin:0 auto}
 
@@ -140,7 +147,7 @@ hr{margin:2.6em 0;border:0;border-top:1px solid var(--rule)}
 .menu-container{max-width:30em}
 .menu-link{
   position:relative;display:inline-block;color:var(--ink);text-decoration:none;
-  line-height:1.45;
+  line-height:1.3;
   /* release snaps; press can feel slightly more deliberate via :active */
   transition:transform .12s cubic-bezier(.23,1,.32,1),color .16s ease;
 }
